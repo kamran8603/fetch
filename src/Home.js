@@ -9,6 +9,8 @@ function Home() {
   const url = "https://dummyjson.com/products";
   const { addItem } = useCart();
 
+
+
   function fetchinfo() {
     fetch(url)
       .then((res) => res.json())

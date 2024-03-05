@@ -11,8 +11,21 @@ import Great from "./Great";
 import ControlledCarousel from "./ControlledCarousel";
 import Carouselll from "./Crouselll";
 import Slider from "./Slider";
+import { useState } from "react";
+import Some from "./Some";
 
 function App() {
+  const url="https://jsonplaceholder.typicode.com/comments"
+  const [value, setValue]= useState([])
+  function fetchinfo(){
+    fetch(url)
+    .then((res)=>res.json())
+    .then((resp)=>{
+      setValue(resp)
+
+    })
+  }
+  
   const slides = [
     'https://hips.hearstapps.com/hmg-prod/images/dog-puppy-on-garden-royalty-free-image-1586966191.jpg?crop=0.752xw:1.00xh;0.175xw,0&resize=1200:*',
     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNvEfJzPktY6DZ4vKdLl-vbilPeMl89zNUXPvKuJgR5Q&s',
@@ -39,6 +52,7 @@ function App() {
             <Link to="compo">ControlledCarousel</Link>
             <Link to="crousel">Crouselll</Link>
             <Link to="slider">Slider</Link>
+            <Link to="some">Some</Link>
           
             </div>
             
@@ -55,9 +69,10 @@ function App() {
               <Route exact path="/fetch" element={<Fetch />}></Route>
               <Route exact path="/Something" element={<Something />}></Route>
               <Route exact path="/great" element={<Great />}></Route>
-              <Route exact path="/compo" element={<ControlledCarousel />} ></Route>
+              <Route exact path="/compo" element={<ControlledCarousel data={fetchinfo} />} ></Route>
               <Route exact path="/crousel" element={<Carouselll slides={slides} />} />
               <Route exact path="/slider" element={<Slider />} ></Route>
+              <Route exact path="/some" element={<Some />} ></Route>
 
             </Routes>
           </div>
